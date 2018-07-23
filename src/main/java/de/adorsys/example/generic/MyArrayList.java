@@ -34,7 +34,7 @@ public class MyArrayList<T> implements List<T> {
 
     public int indexOf(Object o) {
         for(int i = 0; i < size; i++){
-            if(array[i] == null || array[i].equals(o)){
+            if(Objects.equals(array[i], o)){
                 return i;
             }
         }
@@ -43,7 +43,7 @@ public class MyArrayList<T> implements List<T> {
 
     public int lastIndexOf(Object o) {
         for(int i = size-1; i >= 0; i--){
-            if(array[i] == null || array[i].equals(o)){
+            if(Objects.equals(array[i], o)){
                 return i;
             }
         }
