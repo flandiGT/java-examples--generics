@@ -16,13 +16,11 @@ public class Objects<T> implements List<T> {
 
     public T set(int index, T s) {
         if(index > objects.length - 1) {
-            T[] newObjects = (T[])new Object[objects.length * 8];
+            T[] copiedArray = (T[])new Object[objects.length * 8];
 
-            for(int i = 0; i < objects.length; i++) {
-                newObjects[i] = objects[i];
-            }
+            System.arraycopy(objects, 0, copiedArray, 0, objects.length);
 
-            objects = newObjects;
+            objects = copiedArray;
         }
 
         objects[index] = s;
@@ -62,7 +60,7 @@ public class Objects<T> implements List<T> {
     }
 
     public boolean isEmpty() {
-        return false;
+        return size == 0;
     }
 
     public boolean contains(Object o) {
