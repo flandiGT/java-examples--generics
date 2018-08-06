@@ -326,4 +326,22 @@ public class MyArrayListTest {
         otherList.add("xyz");
         assertThat(list.containsAll(otherList), is(equalTo(true)));
     }
+
+    @Test
+    public void shouldAddAllElementFromCollection() throws Exception {
+        List<String> otherList = new ArrayList<>();
+        otherList.add("abc");
+        list.addAll(otherList);
+        assertThat(list.addAll(otherList), is(equalTo(true)));
+    }
+
+    @Test
+    public void shouldAddAllThreeElementsFromCollection() throws Exception {
+        List<String> otherList = new ArrayList<>();
+        otherList.add("abc");
+        otherList.add("def");
+        otherList.add("xyz");
+        list.addAll(otherList);
+        assertThat(list.addAll(otherList), is(equalTo(true)));
+    }
 }

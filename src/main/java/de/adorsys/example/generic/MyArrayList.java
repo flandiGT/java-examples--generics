@@ -107,9 +107,13 @@ public class MyArrayList<T> implements List<T> {
         return true;
     }
 
-    public boolean addAll(Collection<? extends T> c) {
-
-        return false;
+    public boolean addAll(Collection<? extends T> otherCollection) {
+            for (T currentElementOfOtherCollection : otherCollection){
+                if(!add(currentElementOfOtherCollection)){
+                    return false;
+                }
+            }
+        return true;
     }
 
     public boolean addAll(int index, Collection<? extends T> c) {
