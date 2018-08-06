@@ -97,11 +97,18 @@ public class MyArrayList<T> implements List<T> {
         return false;
     }
 
-    public boolean containsAll(Collection<?> c) {
-        return false;
+    public boolean containsAll(Collection<?> otherCollection) {
+        for (Object currentElementOfOtherCollection : otherCollection) {
+            if(!contains(currentElementOfOtherCollection)) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     public boolean addAll(Collection<? extends T> c) {
+
         return false;
     }
 
@@ -110,6 +117,7 @@ public class MyArrayList<T> implements List<T> {
     }
 
     public boolean removeAll(Collection<?> c) {
+
         return false;
     }
 

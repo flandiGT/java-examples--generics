@@ -5,6 +5,9 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsEqual.equalTo;
@@ -278,5 +281,49 @@ public class MyArrayListTest {
         for(Integer counter = 0; counter < 1000000000; counter++) {
             list.add(counter.toString());
         }
+    }
+
+    @Test
+    public void shouldContainAllElementsWhenNoElementExists() throws Exception {
+        List<String> otherList = new ArrayList<>();
+        assertThat(list.containsAll(otherList), is(equalTo(true)));
+
+    }
+
+    @Test
+    public void shouldNotContainAllElementsWhenElementsDiffer() throws Exception {
+        List<String> otherList = new ArrayList<>();
+        otherList.add("abc");
+        assertThat(list.containsAll(otherList), is(equalTo(false)));
+    }
+
+    @Test
+    public void shouldContainAllElementsWhenListsContainingSameElement() throws Exception {
+        list.add("abc");
+
+        List<String> otherList = new ArrayList<>();
+        otherList.add("abc");
+        assertThat(list.containsAll(otherList), is(equalTo(true)));
+    }
+
+    @Test
+    public void shouldContainAllElementsWhenListsContainingOneElement() throws Exception {
+        list.add("abc");
+        list.add("xyz");
+
+        List<String> otherList = new ArrayList<>();
+        otherList.add("abc");
+        assertThat(list.containsAll(otherList), is(equalTo(true)));
+    }
+
+    @Test
+    public void shouldContainAllElementsWhenListsContainingSameElements() throws Exception {
+        list.add("abc");
+        list.add("xyz");
+
+        List<String> otherList = new ArrayList<>();
+        otherList.add("abc");
+        otherList.add("xyz");
+        assertThat(list.containsAll(otherList), is(equalTo(true)));
     }
 }
