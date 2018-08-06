@@ -94,7 +94,13 @@ public class MyArrayList<T> implements List<T> {
     }
 
     public boolean remove(Object o) {
-        return false;
+        for(int i = 0; i < size; i++){
+            if(!contains(o)){
+                return false;
+            }
+        }
+        size--;
+        return true;
     }
 
     public boolean containsAll(Collection<?> otherCollection) {
@@ -107,20 +113,27 @@ public class MyArrayList<T> implements List<T> {
         return true;
     }
 
-    public boolean addAll(Collection<? extends T> otherCollection) {
+    public boolean addAll(int index, Collection<? extends T> otherCollection) {
             for (T currentElementOfOtherCollection : otherCollection){
-                if(!add(currentElementOfOtherCollection)){
-                    return false;
+                if(add(currentElementOfOtherCollection)){
+                    set(size, currentElementOfOtherCollection);
+                    size++;
+                    return true;
                 }
             }
-        return true;
-    }
-
-    public boolean addAll(int index, Collection<? extends T> c) {
         return false;
     }
 
-    public boolean removeAll(Collection<?> c) {
+    public boolean addAll(Collection<? extends T> otherCollection) {
+        for (T currentElementOfOtherCollection : otherCollection){
+            if(!add(currentElementOfOtherCollection)){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean removeAll(Collection<?> otherCollection) {
 
         return false;
     }

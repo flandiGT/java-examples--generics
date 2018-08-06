@@ -344,4 +344,41 @@ public class MyArrayListTest {
         list.addAll(otherList);
         assertThat(list.addAll(otherList), is(equalTo(true)));
     }
+
+    @Test
+    public void shouldAddAllElementFromCollectionAtIndex() throws Exception {
+        List<String> otherList = new ArrayList<>();
+        list.add("abc");
+        list.add("def");
+        list.add("ghi");
+        otherList.add("abc");
+        list.addAll(2, otherList);
+        assertThat(list.addAll(otherList), is(equalTo(true)));
+    }
+
+    @Test
+    public void shouldNotRemoveElementFromCollection() throws Exception {
+        list.add("abc");
+        list.remove("xyz");
+        assertThat(list.remove("xyz"), is(equalTo(false)));
+    }
+
+    @Test
+    public void shouldRemoveElementFromCollection() throws Exception {
+        list.add("abc");
+        list.remove("abc");
+        assertThat(list.remove("abc"), is(equalTo(true)));
+    }
+
+    @Test
+    public void shouldRemoveElementFromLongerCollection() throws Exception {
+        list.add("abc");
+        list.add("def");
+        list.add("xyz");
+        list.add("abc");
+        list.add("def");
+        list.remove("def");
+        assertThat(list.remove("def"), is(equalTo(true)));
+    }
+
 }
