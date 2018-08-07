@@ -347,13 +347,107 @@ public class MyArrayListTest {
 
     @Test
     public void shouldAddAllElementFromCollectionAtIndex() throws Exception {
-        List<String> otherList = new ArrayList<>();
         list.add("abc");
         list.add("def");
         list.add("ghi");
+        List<String> otherList = new ArrayList<>();
         otherList.add("abc");
         list.addAll(2, otherList);
         assertThat(list.addAll(otherList), is(equalTo(true)));
+    }
+
+    @Test
+    public void shouldAddAllElementsFromCollectionAtIndexZero() throws Exception {
+        list.add("abc");
+        list.add("def");
+        list.add("ghi");
+
+        List<String> otherList = new ArrayList<>();
+        otherList.add("xyz");
+        list.addAll(0, otherList);
+
+        assertThat(list.indexOf("xyz"), is(equalTo(0)));
+        assertThat(list.indexOf("abc"), is(equalTo(1)));
+        assertThat(list.indexOf("def"), is(equalTo(2)));
+        assertThat(list.indexOf("ghi"), is(equalTo(3)));
+    }
+
+    @Test
+    public void shouldAddAllTwoElementsFromCollectionAtIndexZero() throws Exception {
+        list.add("abc");
+        list.add("def");
+        list.add("ghi");
+
+        List<String> otherList = new ArrayList<>();
+        otherList.add("xyz");
+        otherList.add("123");
+        list.addAll(0, otherList);
+
+        assertThat(list.indexOf("xyz"), is(equalTo(0)));
+        assertThat(list.indexOf("123"), is(equalTo(1)));
+        assertThat(list.indexOf("abc"), is(equalTo(2)));
+        assertThat(list.indexOf("def"), is(equalTo(3)));
+        assertThat(list.indexOf("ghi"), is(equalTo(4)));
+    }
+
+    @Test
+    public void shouldAddAllElementsFromCollectionAtIndexTwo() throws Exception {
+        list.add("abc");
+        list.add("def");
+        list.add("ghi");
+
+        List<String> otherList = new ArrayList<>();
+        otherList.add("xyz");
+        list.addAll(2, otherList);
+
+        assertThat(list.indexOf("abc"), is(equalTo(0)));
+        assertThat(list.indexOf("def"), is(equalTo(1)));
+        assertThat(list.indexOf("xyz"), is(equalTo(2)));
+        assertThat(list.indexOf("ghi"), is(equalTo(3)));
+    }
+
+    @Test
+    public void shouldAddAllElementsFromCollectionAtIndexThree() throws Exception {
+        list.add("abc");
+        list.add("def");
+        list.add("ghi");
+
+        List<String> otherList = new ArrayList<>();
+        otherList.add("xyz");
+        list.addAll(3, otherList);
+
+        assertThat(list.indexOf("abc"), is(equalTo(0)));
+        assertThat(list.indexOf("def"), is(equalTo(1)));
+        assertThat(list.indexOf("ghi"), is(equalTo(2)));
+        assertThat(list.indexOf("xyz"), is(equalTo(3)));
+    }
+
+    @Test
+    public void shouldNotAddAllElementsFromCollectionWithNegativeIndex() throws Exception {
+        List<String> otherList = new ArrayList<>();
+        otherList.add("xyz");
+
+        try {
+            list.addAll(-1, otherList);
+        } catch(IndexOutOfBoundsException e) {
+            return;
+        }
+
+        Assert.fail("no IndexOutOfBoundsException thrown");
+    }
+
+    @Test
+    public void shouldNotAddAllElementsFromCollectionWithIndexAboveRange() throws Exception {
+        List<String> otherList = new ArrayList<>();
+        otherList.add("xyz");
+
+        try {
+            list.addAll(1, otherList);
+        } catch(IndexOutOfBoundsException e) {
+            return;
+        }
+
+        Assert.fail("no IndexOutOfBoundsException thrown");
     }
 
     @Test
@@ -381,4 +475,26 @@ public class MyArrayListTest {
         assertThat(list.remove("def"), is(equalTo(true)));
     }
 
+    @Test
+    public void shouldRemoveAllElementsFromCollection() throws Exception {
+        list.add("abc");
+        List<String> otherList = new ArrayList<>();
+        otherList.add("abc");
+        list.removeAll(otherList);
+        assertThat(list.removeAll(otherList), is(equalTo(true)));
+    }
+
+    @Test
+    public void shouldRemoveAllElementsFromLongerCollection() throws Exception {
+        list.add("abc");
+        list.add("def");
+        list.add("ghi");
+        list.add("abc");
+        list.add("xyz");
+        List<String> otherList = new ArrayList<>();
+        otherList.add("abc");
+        otherList.add("xyz");
+        list.removeAll(otherList);
+        assertThat(list.removeAll(otherList), is(equalTo(true)));
+    }
 }
