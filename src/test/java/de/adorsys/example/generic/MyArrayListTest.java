@@ -497,4 +497,33 @@ public class MyArrayListTest {
         list.removeAll(otherList);
         assertThat(list.removeAll(otherList), is(equalTo(true)));
     }
+
+    @Test
+    public void shouldRetainAllElementsFromCollection() throws Exception {
+        list.add("abc");
+        list.add("def");
+        list.add("ghi");
+        list.add("abc");
+        list.add("xyz");
+        List<String> otherList = new ArrayList<>();
+        otherList.add("abc");
+        otherList.add("xyz");
+        list.retainAll(otherList);
+        assertThat(list.retainAll(otherList), is(equalTo(true)));
+    }
+
+    @Test
+    public void shouldNotChangeRetainAllElementsFromCollection() throws Exception {
+        list.add("abc");
+        list.add("def");
+        list.add("ghi");
+        list.add("xyz");
+        List<String> otherList = new ArrayList<>();
+        otherList.add("abc");
+        otherList.add("def");
+        otherList.add("ghi");
+        otherList.add("xyz");
+        list.retainAll(otherList);
+        assertThat(list.retainAll(otherList), is(equalTo(false)));
+    }
 }

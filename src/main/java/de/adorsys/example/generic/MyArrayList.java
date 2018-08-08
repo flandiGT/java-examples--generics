@@ -154,7 +154,12 @@ public class MyArrayList<T> implements List<T> {
     }
 
     public boolean retainAll(Collection<?> otherCollection) {
-        return false;
+        for (Object currentElementOfOtherCollection : otherCollection) {
+            if(contains(currentElementOfOtherCollection)){
+                remove(currentElementOfOtherCollection);
+            }
+        }
+        return true;
     }
 
     public void clear() {
