@@ -20,7 +20,7 @@ public class MyArrayList<T> implements List<T> {
     }
 
     public void add(int index, T element) {
-
+        // TODO
     }
 
     public T remove(int index) {
@@ -61,6 +61,7 @@ public class MyArrayList<T> implements List<T> {
     }
 
     public List<T> subList(int fromIndex, int toIndex) {
+        // TODO
         return null;
     }
 
@@ -86,10 +87,12 @@ public class MyArrayList<T> implements List<T> {
     }
 
     public Object[] toArray() {
+        // TODO
         return new Object[0];
     }
 
     public <T1> T1[] toArray(T1[] a) {
+        // TODO
         return null;
     }
 
@@ -177,7 +180,7 @@ public class MyArrayList<T> implements List<T> {
     }
 
     public void clear() {
-
+        // TODO
     }
 
     private T setElementOnIndex(int index, T s) {
