@@ -655,5 +655,53 @@ public class MyArrayListTest {
 
     }
 
+    @Test
+    public void shouldAddElementAtIndex() throws Exception {
+        list.add("abc");
+        list.add(0, "def");
+
+        assertThat(list.size(), is(2));
+        assertThat(list.indexOf("def"), is(equalTo(0)));
+        assertThat(list.indexOf("abc"), is(equalTo(1)));
+    }
+    @Test
+    public void shouldAddElementAtLastIndex() throws Exception {
+        list.add("abc");
+        list.add("def");
+        list.add(2, "xyz");
+
+        assertThat(list.size(), is(3));
+        assertThat(list.indexOf("abc"), is(equalTo(0)));
+        assertThat(list.indexOf("def"), is(equalTo(1)));
+        assertThat(list.indexOf("xyz"), is(equalTo(2)));
+    }
+
+    @Test
+    public void shouldNotAddElementWithNegativeIndex() throws Exception {
+        list.add("abc");
+        list.add("def");
+
+        try {
+            list.add(-1, "xyz");
+        }
+        catch (IndexOutOfBoundsException e){
+            return;
+        }
+        Assert.fail("no IndexOutOfBoundsException thrown");
+    }
+
+    @Test
+    public void shouldNotAddElementByIndexGreaterSize() throws Exception {
+        list.add("abc");
+        list.add("def");
+
+        try {
+            list.add(3, "xyz");
+        }
+        catch (IndexOutOfBoundsException e){
+            return;
+        }
+        Assert.fail("no IndexOutOfBoundsException thrown");
+    }
 
 }

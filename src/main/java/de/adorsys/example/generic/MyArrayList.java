@@ -20,7 +20,19 @@ public class MyArrayList<T> implements List<T> {
     }
 
     public void add(int index, T element) {
-        // TODO
+        if(index < 0 || index > size){
+            throw new IndexOutOfBoundsException();
+        }
+
+        extendArrayIfNeeded(size);
+
+        T previous = setElementOnIndex(index, element);
+        index++;
+        size++;
+
+        for (; index < size; index++) {
+           previous =  setElementOnIndex(index, previous);
+        }
     }
 
     public T remove(int index) {
