@@ -94,12 +94,17 @@ public class MyArrayList<T> implements List<T> {
     }
 
     public boolean remove(Object o) {
-        for (int i = 0; i < size; i++) {
-            if (!contains(o)) {
-                return false;
-            }
+        int index = indexOf(o);
+
+        if(!contains(o)){
+            return false;
         }
+
         size--;
+        for (; index < size; index++){
+            array[index] = array[index + 1];
+        }
+        array[index] = null;
         return true;
     }
 
