@@ -162,7 +162,18 @@ public class MyArrayList<T> implements List<T> {
     }
 
     public boolean retainAll(Collection<?> otherCollection) {
-        return false;
+        boolean changed = false;
+        int index = 0;
+
+        while(index < size){
+            if(otherCollection.contains(array[index])){
+                index++;
+            } else {
+                removeOnIndex(index);
+                changed = true;
+            }
+        }
+        return changed;
     }
 
     public void clear() {

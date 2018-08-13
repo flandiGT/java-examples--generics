@@ -536,6 +536,59 @@ public class MyArrayListTest {
     }
 
     @Test
+    public void shouldRetainAllElementsFromCollection() throws Exception {
+        list.add("abc");
+        list.add("def");
+        list.add("ghi");
+        list.add("abc");
+        list.add("xyz");
+
+        List<String> otherList = new ArrayList<>();
+        otherList.add("abc");
+
+        assertThat(list.retainAll(otherList), is(equalTo(true)));
+        assertThat(list.size(), is(equalTo(2)));
+        assertThat(list.indexOf("abc"), is(equalTo(0)));
+        assertThat(list.lastIndexOf("abc"), is(equalTo(1)));
+    }
+
+    @Test
+    public void shouldNotChangeRetainAllElementsFromCollection() throws Exception {
+        list.add("abc");
+        list.add("def");
+        list.add("ghi");
+        list.add("xyz");
+        List<String> otherList = new ArrayList<>();
+        otherList.add("abc");
+        otherList.add("def");
+        otherList.add("ghi");
+        otherList.add("xyz");
+
+        boolean hasChanged = list.retainAll(otherList);
+
+        assertThat(hasChanged, is(equalTo(false)));
+        assertThat(list.size(), is(equalTo(4)));
+        assertThat(list.indexOf("abc"), is(equalTo(0)));
+        assertThat(list.indexOf("def"), is(equalTo(1)));
+        assertThat(list.indexOf("ghi"), is(equalTo(2)));
+        assertThat(list.indexOf("xyz"), is(equalTo(3)));
+    }
+
+    @Test
+    public void shouldDeleteWithRetainAllElementsWithEmptyCollection() throws Exception {
+        list.add("abc");
+        list.add("def");
+        list.add("ghi");
+        list.add("xyz");
+        List<String> otherList = new ArrayList<>();
+
+        boolean hasChanged = list.retainAll(otherList);
+
+        assertThat(hasChanged, is(equalTo(true)));
+        assertThat(list.size(), is(equalTo(0)));
+    }
+
+    @Test
     public void shouldNotRemoveByNegativeIndex() throws Exception {
         try {
             list.remove(-1);
