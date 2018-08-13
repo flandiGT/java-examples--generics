@@ -96,7 +96,7 @@ public class MyArrayList<T> implements List<T> {
     public boolean remove(Object o) {
         int index = indexOf(o);
 
-        if(!contains(o)){
+        if(index < 0){
             return false;
         }
 
