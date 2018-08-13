@@ -641,5 +641,19 @@ public class MyArrayListTest {
         assertThat(list.get(0), is(equalTo("abc")));
     }
 
+    @Test
+    public void shouldBeEmptyAfterClear() throws Exception {
+        list.add("abc");
+        list.add("def");
+
+        list.clear();
+
+        assertThat(list.size(), is(0));
+        assertThat(list.isEmpty(), is(true));
+        assertThat(list.indexOf("abc"), is(equalTo(-1)));
+        assertThat(list.indexOf("def"), is(equalTo(-1)));
+
+    }
+
 
 }

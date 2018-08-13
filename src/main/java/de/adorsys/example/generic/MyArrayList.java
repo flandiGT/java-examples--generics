@@ -180,7 +180,8 @@ public class MyArrayList<T> implements List<T> {
     }
 
     public void clear() {
-        // TODO
+        size = 0;
+        array = (T[]) new Object[1];
     }
 
     private T setElementOnIndex(int index, T s) {
