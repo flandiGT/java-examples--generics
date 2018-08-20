@@ -423,6 +423,26 @@ public class MyArrayListTest {
     }
 
     @Test
+    public void shouldAddAllByIndexWithHighAmountOfElements() throws Exception {
+        list.add("a");
+        list.add("b");
+
+        final int count = 63;
+        List<String> otherList = new ArrayList<>();
+        for(int i = 0; i < count; i++) {
+            otherList.add(String.valueOf(i));
+        }
+
+        list.addAll(1, otherList);
+
+        assertThat(list.indexOf("a"), is(equalTo(0)));
+        for(int i = 0; i < count; i++) {
+            assertThat(list.indexOf(String.valueOf(i)), is(equalTo(i + 1)));
+        }
+        assertThat(list.indexOf("b"), is(equalTo(count + 1)));
+    }
+
+    @Test
     public void shouldNotAddAllElementsFromCollectionWithNegativeIndex() throws Exception {
         List<String> otherList = new ArrayList<>();
         otherList.add("xyz");
