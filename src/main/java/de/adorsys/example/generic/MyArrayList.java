@@ -206,13 +206,29 @@ public class MyArrayList<T> implements List<T> {
     }
 
     private void extendArrayIfNeeded(int index) {
-        if (index > array.length - 1) {
-            T[] copiedArray = (T[]) new Object[array.length * 8];
+        int newSize = calculateNewSize(index);
 
-            System.arraycopy(array, 0, copiedArray, 0, array.length);
-
-            array = copiedArray;
+        if (newSize > array.length) {
+            extendArray(newSize);
         }
+    }
+
+    private void extendArray(int newSize) {
+        T[] copiedArray = (T[]) new Object[newSize];
+
+        System.arraycopy(array, 0, copiedArray, 0, array.length);
+
+        array = copiedArray;
+    }
+
+    private int calculateNewSize(int index) {
+        int newSize = array.length;
+
+        while (index >= newSize) {
+            newSize = newSize * 8;
+        }
+
+        return newSize;
     }
 
     private void removeOnIndex(int index) {
