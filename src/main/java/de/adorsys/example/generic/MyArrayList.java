@@ -73,8 +73,16 @@ public class MyArrayList<T> implements List<T> {
     }
 
     public List<T> subList(int fromIndex, int toIndex) {
-        // TODO
-        return null;
+        if(fromIndex < 0 || toIndex > size || fromIndex > toIndex){
+            throw new IndexOutOfBoundsException();
+        }
+
+        MyArrayList<T> myArrayList = new MyArrayList<>();
+        for(; fromIndex < toIndex; fromIndex++){
+           myArrayList.add(array[fromIndex]);
+        }
+
+        return myArrayList;
     }
 
     public int size() {

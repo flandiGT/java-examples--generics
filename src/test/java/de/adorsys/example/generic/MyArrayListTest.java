@@ -724,4 +724,99 @@ public class MyArrayListTest {
         Assert.fail("no IndexOutOfBoundsException thrown");
     }
 
+    @Test
+    public void shouldNotCreateSublistForFromIndexGreaterToIndex() throws Exception {
+        list.add("abc");
+        list.add("def");
+        list.add("ghi");
+
+        try {
+            list.subList(2, 1);
+        }
+        catch (IndexOutOfBoundsException e) {
+            return;
+        }
+        Assert.fail("no IndexOutOfBoundsException thrown");
+    }
+
+    @Test
+    public void shouldNotCreateSublistForNegativeIndex() throws Exception {
+        list.add("abc");
+        list.add("def");
+        list.add("ghi");
+
+        try {
+            list.subList(-1, 1);
+        }
+        catch (IndexOutOfBoundsException e) {
+            return;
+        }
+        Assert.fail("no IndexOutOfBoundsException thrown");
+    }
+
+    @Test
+    public void shouldNotCreateSublistForToIndexGreaterSize() throws Exception {
+        list.add("abc");
+        list.add("def");
+        list.add("ghi");
+
+        try {
+            list.subList(1, 5);
+        }
+        catch (IndexOutOfBoundsException e) {
+            return;
+        }
+        Assert.fail("no IndexOutOfBoundsException thrown");
+    }
+
+    @Test
+    public void shouldBeEmptyWithIdenticalFromAndToIndex() throws Exception {
+        list.add("abc");
+        list.add("def");
+        list.add("ghi");
+        list.add("jkl");
+        list.add("mno");
+        list.add("pqr");
+
+
+        List<String> otherList = list.subList(3, 3);
+
+        assertThat(otherList.isEmpty(), is(equalTo(true)));
+
+    }
+
+    @Test
+    public void shouldDisplaySublistWithOneElement() throws Exception {
+        list.add("abc");
+        list.add("def");
+        list.add("ghi");
+        list.add("jkl");
+        list.add("mno");
+        list.add("pqr");
+
+        List<String> otherList = list.subList(1, 2);
+
+        assertThat(otherList.size(), is(equalTo(1)));
+        assertThat(otherList.indexOf("def"), is(equalTo(0)));
+    }
+
+    @Test
+    public void shouldDisplaySublistWithThreeElements() throws Exception {
+        list.add("abc");
+        list.add("def");
+        list.add("ghi");
+        list.add("jkl");
+        list.add("mno");
+        list.add("pqr");
+
+        List<String> otherList = list.subList(1, 4);
+
+        assertThat(otherList.size(), is(equalTo(3)));
+        assertThat(otherList.indexOf("def"), is(equalTo(0)));
+        assertThat(otherList.indexOf("ghi"), is(equalTo(1)));
+        assertThat(otherList.indexOf("jkl"), is(equalTo(2)));
+    }
+
+
+
 }
